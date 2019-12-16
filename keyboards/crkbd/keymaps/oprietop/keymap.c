@@ -186,14 +186,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-void matrix_init_user(void) { // Runs boot tasks for keyboard
-  #ifdef UNICODE_ENABLE
-    set_unicode_input_mode(UC_LNX);
-  #endif
-};
-
 #ifdef OLED_DRIVER_ENABLE
-//oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_270; }
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   if (is_master) {
     return OLED_ROTATION_270;
@@ -323,16 +316,6 @@ void oled_task_user(void) {
   } else {
     render_status_secondary();
   }
-}
-#endif
-
-#ifdef RGB_MATRIX_ENABLE
-void suspend_power_down_keymap(void) {
-  rgb_matrix_set_suspend_state(true);
-}
-
-void suspend_wakeup_init_keymap(void) {
-  rgb_matrix_set_suspend_state(false);
 }
 #endif
 
