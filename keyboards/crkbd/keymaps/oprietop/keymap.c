@@ -19,13 +19,17 @@ static const char PROGMEM crkbd_logo[] = {0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x
 #define _AD 5
 #define _EM 6
 
-enum custom_keycodes {
-  MODDH  = SAFE_RANGE,
+enum keycodes {
+  MODDH = SAFE_RANGE,
   QWERTY,
   DVORAK,
   M_BSPC,
   M_WIPE,
-  M_RAN64,
+  M_RAN64
+};
+
+#ifdef UNICODE_ENABLE
+enum emojis {
   UC_FLIP,
   UC_TABL,
   UC_SHRG,
@@ -45,6 +49,7 @@ enum custom_keycodes {
   UC_HAPY,
   UC_STRG
 };
+#endif
 
 // Shortcuts
 #define COPY LCTL(KC_INS)
@@ -177,6 +182,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      RGB_TOG, RGB_MOD,  RGB_HUD, RGB_SAD, RGB_VAD, KC_BRID,                   KC_PPLS, KC_P1, KC_P2, KC_P3, KC_PAST, KC_SLCK, \
                                           XXXXXXX, M_RAN64, EMOJI,  KC_BSPC, KC_DEL,  KC_PENT \
   ),
+
+#ifdef UNICODE_ENABLE
   // Emoji
   [_EM] = LAYOUT (
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   UC_TABL, UC_FLIP, UC_RAGE, UC_NOOO, UC_LENY, UC_SHR2, \
@@ -184,7 +191,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   UC_SALU, UC_DANC, UC_SHRG, UC_DEAL, UC_CRY,  UC_STRG, \
                                          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX \
   )
+#endif
 };
+
+void keyboard_post_init_user(void) {
+  // Customise these values to desired behaviour
+  debug_enable=true;
+  debug_matrix=true;
+  debug_keyboard=true;
+  debug_mouse=true;
+}
 
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -320,7 +336,9 @@ void oled_task_user(void) {
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {  add_keylog(keycode); }
+  #ifdef OLED_DRIVER_ENABLE
+    if (record->event.pressed) {  add_keylog(keycode); }
+  #endif
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
@@ -475,3 +493,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 };
+
+#ifdef RGB_MATRIX_ENABLE
+void suspend_power_down_keymap(void) { rgb_matrix_set_suspend_state(true); }
+void suspend_wakeup_init_keymap(void) { rgb_matrix_set_suspend_state(false); }
+#endif
