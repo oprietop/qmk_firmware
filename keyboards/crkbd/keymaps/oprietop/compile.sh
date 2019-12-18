@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Atm need to revert that one for the corne to boot
+git revert --no-commit 947e61eaebf168c0c60be34914141cff9a69e599
+
 # Left Half
 make clean
 make crkbd:oprietop
