@@ -12,3 +12,6 @@ mv crkbd_rev1_oprietop.hex crkbd_rev1_oprietop-left.hex
 make clean
 make crkbd:oprietop RGB_MATRIX_SPLIT_RIGHT=yes
 mv crkbd_rev1_oprietop.hex crkbd_rev1_oprietop-right.hex
+
+# must have different checksums
+md5sum crkbd_rev1_oprietop-*

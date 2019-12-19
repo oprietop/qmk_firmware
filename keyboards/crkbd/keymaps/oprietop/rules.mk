@@ -29,3 +29,7 @@ COMMAND_ENABLE = no
 # Get some firmware space back
 LINK_TIME_OPTIMIZATION_ENABLE = yes
 SPACE_CADET_ENABLE = no
+
+ifeq ($(strip $(RGB_MATRIX_SPLIT_RIGHT)), yes)
+    OPT_DEFS += -DRGB_MATRIX_SPLIT_RIGHT
+endif
