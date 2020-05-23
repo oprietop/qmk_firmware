@@ -27,7 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Macro and tapping behaviour */
 #define IGNORE_MOD_TAP_INTERRUPT
 #undef PERMISSIVE_HOLD
-#undef TAPPING_TERM
 #define TAPPING_TERM 200
 //
 
@@ -57,16 +56,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef LOCKING_RESYNC_ENABLE
 #   undef LOCKING_RESYNC_ENABLE
 #endif
-
-#define CONFIG_USER_H
-
-/* RGB LED */
-#define RGBLIGHT_ANIMATIONS
-
-// Disable the command automation
-#undef IS_COMMAND
-
-// Got the leds soldered the old way
-// https://github.com/omkbd/ErgoDash/blob/master/Doc/build-en.md#12-firmware
-//#undef RGBLIGHT_SPLIT
-//#undef RGBLED_SPLIT
