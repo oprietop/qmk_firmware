@@ -38,6 +38,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #  define QMK_KEYS_PER_SCAN 4
 #endif
 
+/* RGB */
+#undef RGBLED_NUM
+#define RGBLIGHT_ANIMATIONS
+#define RGBLED_NUM 10
+
 /* Mouse Settings */
 #ifdef MOUSEKEY_ENABLE
 #  define MOUSEKEY_INTERVAL 16
