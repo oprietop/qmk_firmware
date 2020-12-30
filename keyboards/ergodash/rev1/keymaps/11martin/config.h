@@ -66,14 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Disable the command automation
 #undef IS_COMMAND
 
-// Backlight Breathing
-#define BACKLIGHT_BREATHING
-
 // Got the leds soldered the old way
 // https://github.com/omkbd/ErgoDash/blob/master/Doc/build-en.md#12-firmware
 //#undef RGBLIGHT_SPLIT
 //#undef RGBLED_SPLIT
-
-
-// Fixing the elite-c v3 bug
-#define SPLIT_USB_DETECT

@@ -1,19 +1,15 @@
 /*
 This is the c configuration file for the keymap
-
 Copyright 2012 Jun Wako <wakojun@gmail.com>
 Copyright 2015 Jack Humbert
-
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or
 (at your option) any later version.
-
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
-
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -27,7 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Macro and tapping behaviour */
 #define IGNORE_MOD_TAP_INTERRUPT
 #undef PERMISSIVE_HOLD
-#undef TAPPING_TERM
 #define TAPPING_TERM 200
 //
 
@@ -38,6 +33,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef QMK_KEYS_PER_SCAN
 #  define QMK_KEYS_PER_SCAN 4
 #endif
+
+/* RGB https://github.com/cinnamon-bun/waffletone/blob/master/soldering-guide.png */
+#define RGBLIGHT_ANIMATIONS
 
 /* Mouse Settings */
 #ifdef MOUSEKEY_ENABLE
@@ -57,23 +55,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef LOCKING_RESYNC_ENABLE
 #   undef LOCKING_RESYNC_ENABLE
 #endif
-
-#define CONFIG_USER_H
-
-/* RGB LED */
-#define RGBLIGHT_ANIMATIONS
-
-// Disable the command automation
-#undef IS_COMMAND
-
-// Backlight Breathing
-#define BACKLIGHT_BREATHING
-
-// Got the leds soldered the old way
-// https://github.com/omkbd/ErgoDash/blob/master/Doc/build-en.md#12-firmware
-//#undef RGBLIGHT_SPLIT
-//#undef RGBLED_SPLIT
-
-
-// Fixing the elite-c v3 bug
-#define SPLIT_USB_DETECT

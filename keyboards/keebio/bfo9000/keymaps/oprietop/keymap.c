@@ -46,64 +46,52 @@ enum custom_keycodes {
 };
 
 // Shortcuts
-#define COPY LCTL(KC_INS)
-#define CUT LSFT(KC_DEL)
 #define PASTE RSFT(KC_INS)
+#define CUT LSFT(KC_DEL)
+#define CPY LCTL(KC_INS)
 #define RGB_RMD RGB_RMOD
+// Shift when held, Enter when tapped
+#define LSEN LSFT_T(KC_ENT)
+#define RSEN RSFT_T(KC_ENT)
 // Shift when held, Space when tapped
-#define S_SPC LSFT_T(KC_SPC)
-// Layer Toggle when held. Space when tapped
+#define LSSP LSFT_T(KC_SPC)
+// Shift when held, Backspace when tapped
+#define RBSPC LSFT_T(KC_BSPC)
+
+// Modifiers
+#define LT_ESC LT(_AD, KC_ESC)
+#define S_TAB LSFT_T(KC_TAB)
 #define LT_SPC LT(_FN, KC_SPC)
-// Shift when held, BackSpace when tapped
-#define S_BSPC RSFT_T(KC_BSPC)
-// Layet toggle when held, BackSpace when tapped
 #define LT_BSPC LT(_FN, KC_BSPC)
-// Shift Mod Taps
-#define S_MINS LSFT_T(KC_MINS)
-#define S_EQL RSFT_T(KC_EQL)
+#define S_DEL RSFT_T(KC_DEL)
+
+// Mod-Taps
+// https://github.com/qmk/qmk_firmware/blob/master/docs/feature_advanced_keycodes.md
+#define LST(X) LSFT_T(X)
+#define RST(X) RSFT_T(X)
+#define LCT(X) LCTL_T(X)
+#define RCT(X) RCTL_T(X)
+#define LGT(X) LGUI_T(X)
+#define RGT(X) RGUI_T(X)
+#define TAT(X) LALT_T(X)
+#define AGT(X) RALT_T(X)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_DH] = LAYOUT( /* COLEMAK MOD-DH*/
-    KC_ESC,     KC_1,    KC_2,    KC_3,    KC_4,    KC_5, KC_HOME,           KC_END,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSLS, \
-    KC_LBRC,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B, KC_PGDN,          KC_PGUP,    KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_RBRC, \
-    KC_GRV,     KC_A,    KC_R,    KC_S,    KC_T,    KC_G, M_RAN64,           KC_INS,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O, KC_QUOT, \
-    S_MINS,     KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,  KC_TAB,           KC_DEL,    KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH,   S_EQL, \
-    KC_LCTL, KC_LGUI, KC_LALT, KC_RALT, KC_LSFT,  LT_SPC, XXXXXXX,          XXXXXXX, LT_BSPC, KC_RSFT, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT  \
+  [_DH] = LAYOUT( /* COLEMAK MOD-DH */
+    KC_ESC,  KC_NLCK, KC_MINS, KC_EQL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,            KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PAUS, KC_PSCR, \
+    KC_PSLS, KC_PAST, KC_PMNS, KC_ENT,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,             KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS, KC_INS,  KC_HOME, KC_PGUP, \
+    KC_P7,   KC_P8,   KC_P9,   KC_LBRC, KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,             KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_RBRC, KC_DEL,  KC_END,  KC_PGDN, \
+    KC_P4,   KC_P5,   KC_P6,   KC_GRV,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,             KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT, KC_ENT,  M_RAN64, KC_CAPS, \
+    KC_P1,   KC_P2,   KC_P3,   KC_MINS, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,             KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_EQL,  KC_ENT , KC_UP,   M_RAN64, \
+    KC_P0,   KC_PDOT, KC_PPLS, KC_LCTL, KC_LGUI, KC_LALT, KC_ESC,  S_TAB,   LT_SPC,           LT_BSPC, S_DEL,   KC_RALT, KC_LALT, KC_RGUI, KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT  \
   ),
-  [_QW] = LAYOUT( /* QWERTY */
-    _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, \
-    _______, _______, _______,    KC_E,    KC_R,    KC_T, _______,          _______,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, _______, \
-    _______, _______,    KC_S,    KC_D,    KC_F, _______, _______,          _______,    KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, _______, \
-    _______, _______, _______, _______,    KC_V,    KC_B, _______,          _______,    KC_N,    KC_M, _______, _______, _______, _______, \
-    _______, _______, _______, _______, _______, _______, XXXXXXX,          XXXXXXX, _______, _______, _______, _______, _______, _______  \
-  ),
-  [_DV] = LAYOUT( /* DVORAK */
-    _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, \
-    _______, KC_QUOT, KC_COMM,  KC_DOT, _______,    KC_Y, _______,          _______,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L, _______, \
-    _______, _______,    KC_O,    KC_E,    KC_U,    KC_I, _______,          _______,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S, KC_SLSH, \
-    _______, KC_SCLN,    KC_Q,    KC_J,    KC_K,    KC_X, _______,          _______,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z, _______, \
-    _______, _______, _______, _______, _______, _______, XXXXXXX,          XXXXXXX, _______, _______, _______, _______, _______, _______  \
-  ),
-  [_FN] = LAYOUT( /* FUNCTION */
-     KC_F11,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, KC_VOLD,          KC_MNXT, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F12,  \
-    _______,  KC_ESC,    COPY, KC_WH_U,     CUT,   PASTE, KC_MPRV,          KC_MNXT, KC_PGUP, KC_BTN1, KC_MS_U, KC_BTN2, KC_BTN3, _______, \
-    _______,  KC_TAB, KC_WH_L, KC_WH_D, KC_WH_R, KC_BTN3, KC_MUTE,          KC_MPLY, KC_HOME, KC_MS_L, KC_MS_D, KC_MS_R, KC_END,  _______, \
-    _______, KC_LCTL, KC_LSFT, KC_LGUI, KC_BTN1, KC_BTN2, TT(_EM),          TT(_EM), KC_PGDN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, \
-    _______, _______, _______, _______, TT(_AD),  KC_ENT, XXXXXXX,          XXXXXXX, KC_ENT,  TT(_AD), KC_LEFT, KC_DOWN, KC_RGHT, _______  \
-  ),
-  [_AD] = LAYOUT( /* ADJUST */ 
-      RESET,   MODDH,  QWERTY,  DVORAK,   DEBUG,  M_WIPE, _______,          _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSCR, \
-      M_VER, RGB_M_G, RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_K, _______,          _______, KC_PMNS,   KC_P7,   KC_P8,   KC_P9, KC_PSLS, KC_NLCK, \
-    RGB_RMD, RGB_HUI, RGB_SAI, RGB_VAI, KC_BRIU, XXXXXXX, _______,          _______,   KC_P0,   KC_P4,   KC_P5,   KC_P6, KC_PDOT, KC_CAPS, \
-    RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, KC_BRID, XXXXXXX, _______,          _______, KC_PPLS,   KC_P1,   KC_P2,   KC_P3, KC_PAST, KC_SLCK, \
-    RGB_TOG, BL_STEP, BL_BRTG, XXXXXXX, XXXXXXX,  KC_ENT, XXXXXXX,          XXXXXXX, KC_PENT, KC_BSPC, _______, _______, _______, _______  \
-  ),
-  [_EM] = LAYOUT( /* EMOJI */
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX,  M_PULL, M_PUSH,     M_LS,  M_INCL, XXXXXXX, XXXXXXX, \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, UC_TABL, UC_FLIP, UC_RAGE, UC_NOOO, UC_LENY, UC_SHR2, \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, UC_SCRE, UC_DISA, UC_WALL, UC_SOB,  UC_WHAT, UC_HAPY, \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, UC_SALU, UC_DANC, UC_SHRG, UC_DEAL, UC_CRY,  UC_STRG, \
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX  \
+  [_FN] = LAYOUT( /* Functions */
+    M_WIPE,  _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+    RGB_TOG, RGB_MOD, _______, KC_F11,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,            KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F12 , _______, _______, _______, \
+    _______, _______, _______, _______, KC_ESC,  CUT,     KC_WH_U, PASTE,   CPY,              KC_PGUP, KC_BTN1, KC_MS_U, KC_BTN2, KC_BTN3, KC_BTN4, _______, _______, _______, \
+    _______, _______, _______, _______, KC_TAB,  KC_WH_L, KC_WH_D, KC_WH_R, M_RAN64,          KC_HOME, KC_MS_L, KC_MS_D, KC_MS_R, KC_END,  _______, _______, _______, _______, \
+    _______, _______, _______, _______, KC_LCTL, KC_LSFT, KC_LGUI, KC_BTN1, KC_BTN2,          KC_PGDN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______, _______, _______, \
+    _______, _______, _______, _______, _______, _______, _______, MO(_AD), KC_ENT,           KC_ENT,  MO(_AD), _______, _______, _______, _______, _______, _______, _______  \
   )
 };
 
@@ -289,25 +277,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 };
-
-// Change LED colors depending on the layer.
-// https://github.com/qmk/qmk_firmware/blob/master/quantum/rgblight_list.h
-//#ifdef RGBLIGHT_ENABLE
-//  uint32_t layer_state_set_user(uint32_t state) {
-//    switch (biton32(state)) {
-//      case _CO:
-//        rgblight_sethsv_noeeprom(0,0,rgblight_get_val()); // White
-//        break;
-//      case _QW:
-//        rgblight_sethsv_noeeprom(191,255,rgblight_get_val()); // Purple
-//        break;
-//      case _FN:
-//        rgblight_sethsv_noeeprom(28,255,rgblight_get_val()); // Orange
-//        break;
-//      case _AD:
-//        rgblight_sethsv_noeeprom(0,255,rgblight_get_val()); // Red
-//        break;
-//    }
-//    return state;
-//  };
-//#endif
