@@ -1,4 +1,4 @@
-/* Copyright 2020 kamonanban
+/* Copyright 2020 Nathan Spears
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,4 +14,4 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "manta60.h"
+#include "quark.h"
