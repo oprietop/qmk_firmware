@@ -67,7 +67,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef IS_COMMAND
 
 // Backlight Breathing
-#define BACKLIGHT_BREATHING
+//#define BACKLIGHT_BREATHING
 
 // Got the leds soldered the old way
 // https://github.com/omkbd/ErgoDash/blob/master/Doc/build-en.md#12-firmware
@@ -76,4 +76,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 // Fixing the elite-c v3 bug
-#define SPLIT_USB_DETECT
+//#define SPLIT_USB_DETECT

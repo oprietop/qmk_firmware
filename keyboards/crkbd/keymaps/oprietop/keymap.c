@@ -25,6 +25,7 @@ enum keycodes {
   DVORAK,
   M_BSPC,
   M_WIPE,
+  M_RGBRS,
   M_RAN64,
   UC_FLIP,
   UC_TABL,
@@ -172,8 +173,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                          `--------------------' `--------------------'
    */
   [_AD] = LAYOUT (
-     RESET,   MODDH,    QWERTY,  DVORAK,  _______, KC_PSCR,                   KC_PMNS, KC_P7, KC_P8, KC_P9, KC_PSLS, KC_NLCK, \
-     M_WIPE,  RGB_RMOD, RGB_HUI, RGB_SAI, RGB_VAI, KC_BRIU,                   KC_P0,   KC_P4, KC_P5, KC_P6, KC_PDOT, KC_CAPS, \
+     M_WIPE,  MODDH,    QWERTY,  DVORAK,  _______, KC_PSCR,                   KC_PMNS, KC_P7, KC_P8, KC_P9, KC_PSLS, KC_NLCK, \
+     M_RGBRS, RGB_RMOD, RGB_HUI, RGB_SAI, RGB_VAI, KC_BRIU,                   KC_P0,   KC_P4, KC_P5, KC_P6, KC_PDOT, KC_CAPS, \
      RGB_TOG, RGB_MOD,  RGB_HUD, RGB_SAD, RGB_VAD, KC_BRID,                   KC_PPLS, KC_P1, KC_P2, KC_P3, KC_PAST, KC_SLCK, \
                                           XXXXXXX, M_RAN64, EMOJI,  KC_BSPC, KC_DEL,  KC_PENT \
   ),
@@ -348,6 +349,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         eeconfig_init();
         reset_keyboard();
       }
+      return false;
+      break;
+    case M_RGBRS:
+        if (record->event.pressed) {
+          eeconfig_update_rgb_matrix_default();
+        }
       return false;
       break;
     case M_RAN64:
